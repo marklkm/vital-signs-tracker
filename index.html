@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <title>Vital Signs Tracker</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -33,6 +32,16 @@
         background: none;
         border: none;
         font-size: 1.5rem;
+      }
+      #patientPhoto {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #6c757d;
+      }
+      .dark-mode #patientPhoto {
+        border-color: #f1f1f1;
       }
     </style>
   </head>
@@ -90,6 +99,17 @@
             <input type="date" id="dob" class="form-control" required />
           </div>
           <div class="col-md-4 col-12">
+            <label for="patientImage" class="form-label"
+              >Patient Photo (optional)</label
+            >
+            <input
+              type="file"
+              id="patientImage"
+              accept="image/*"
+              class="form-control"
+            />
+          </div>
+          <div class="col-md-4 col-12">
             <button type="submit" class="btn btn-success w-100 mt-4">
               Add Patient
             </button>
@@ -105,7 +125,16 @@
         </div>
 
         <!-- Current Patient Info -->
-        <div id="patientInfoDisplay" class="patient-info-box d-none">
+        <div
+          id="patientInfoDisplay"
+          class="patient-info-box d-none text-center"
+        >
+          <img
+            id="patientPhoto"
+            src=""
+            alt="Patient photo"
+            class="img-thumbnail mb-3 d-none"
+          />
           <h4>Current Patient</h4>
           <p><strong>Name:</strong> <span id="displayPatientName"></span></p>
           <p><strong>DOB:</strong> <span id="displayPatientDOB"></span></p>
@@ -209,6 +238,7 @@
       const patientInfoDisplay = document.getElementById("patientInfoDisplay");
       const displayPatientName = document.getElementById("displayPatientName");
       const displayPatientDOB = document.getElementById("displayPatientDOB");
+      const patientPhoto = document.getElementById("patientPhoto");
       const entriesTable = document.getElementById("entriesTable");
       const vitalForm = document.getElementById("vitalForm");
       const darkModeSwitch = document.getElementById("darkModeSwitch");
@@ -234,18 +264,35 @@
         event.preventDefault();
         const name = document.getElementById("patientName").value;
         const dob = document.getElementById("dob").value;
+        const fileInput = document.getElementById("patientImage");
+
         if (patients[dob]) {
           alert("Patient with this DOB already exists!");
           return;
         }
-        patients[dob] = { name, dob, entries: [] };
+
+        // Handle image upload as Base64
+        if (fileInput.files.length > 0) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const imageBase64 = e.target.result;
+            addPatient(name, dob, imageBase64);
+          };
+          reader.readAsDataURL(fileInput.files[0]);
+        } else {
+          addPatient(name, dob, "");
+        }
+      });
+
+      function addPatient(name, dob, image) {
+        patients[dob] = { name, dob, image, entries: [] };
         const option = document.createElement("option");
         option.value = dob;
         option.textContent = `${name} (${dob})`;
         selectPatient.appendChild(option);
         patientForm.reset();
         savePatientsToStorage();
-      });
+      }
 
       selectPatient.addEventListener("change", function () {
         currentPatientID = this.value;
@@ -257,11 +304,16 @@
         const patient = patients[currentPatientID];
         displayPatientName.textContent = patient.name;
         displayPatientDOB.textContent = patient.dob;
+        if (patient.image) {
+          patientPhoto.src = patient.image;
+          patientPhoto.classList.remove("d-none");
+        } else {
+          patientPhoto.classList.add("d-none");
+        }
         patientInfoDisplay.classList.remove("d-none");
         renderEntries();
       });
 
-      // ✅ FIXED: formatted time display
       vitalForm.addEventListener("submit", function (event) {
         event.preventDefault();
         if (!currentPatientID) {
@@ -281,7 +333,6 @@
           timeStyle: "short",
         });
 
-        // Save formatted time instead of raw ISO
         patients[currentPatientID].entries.push({
           time: formattedTime,
           systolic,
