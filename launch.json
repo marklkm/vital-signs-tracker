@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "chrome",
+        "request": "launch",
+        "name": "Launch with Live Server",
+        "url": "http://localhost:5500/Users/marklikeman/Documents/vital-signs-track${extensionInstallFolder:publisher.extension}/index.html",
+        "webRoot": "${workspaceFolder}"
+      }
+    ]
+  }
