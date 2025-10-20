@@ -122,25 +122,20 @@ function renderEntries() {
   patients[currentPatientID].entries.forEach((entry, index) => {
     const row = document.createElement("tr");
     row.innerHTML = `
-            <td>${entry.time}</td>
-            <td>${entry.systolic}</td>
-            <td>${entry.diastolic}</td>
-            <td>${entry.spo2}</td>
-            <td>${entry.pulse}</td>
-            <td>${entry.temperature}</td>
-            <td><button class="btn btn-sm btn-danger" onclick="deleteEntry(${index})">Delete</button></td>
-          `;
+      <td data-label="Time">${entry.time}</td>
+      <td data-label="Systolic">${entry.systolic}</td>
+      <td data-label="Diastolic">${entry.diastolic}</td>
+      <td data-label="SpO₂ %">${entry.spo2}</td>
+      <td data-label="Pulse">${entry.pulse}</td>
+      <td data-label="Temperature (°C)">${entry.temperature}</td>
+      <td data-label="Action">
+        <button class="btn btn-sm btn-danger" onclick="deleteEntry(${index})">
+          Delete
+        </button>
+      </td>
+    `;
     entriesTable.appendChild(row);
   });
-}
-
-function deleteEntry(index) {
-  if (!currentPatientID) return;
-  if (confirm("Are you sure you want to delete this entry?")) {
-    patients[currentPatientID].entries.splice(index, 1);
-    savePatientsToStorage();
-    renderEntries();
-  }
 }
 
 document.getElementById("exportCSV").addEventListener("click", function () {

@@ -54,6 +54,7 @@
     border: 1px solid #dee2e6;
     border-radius: 0.5rem;
     padding: 0.5rem;
+    background-color: #fff;
   }
   table.table td {
     display: flex;
@@ -65,5 +66,14 @@
     content: attr(data-label);
     font-weight: 600;
     text-transform: capitalize;
+    color: #495057;
+  }
+  .dark-mode table.table tbody tr {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+  }
+  .dark-mode table.table td::before {
+    color: #ddd;
   }
 }
+
