@@ -26,6 +26,16 @@
         max-width: 150px;
         border-radius: 0.5rem;
       }
+footer a {
+  color: #0a58ca; /* a darker accessible blue */
+  font-weight: 500;
+}
+
+footer a:hover,
+footer a:focus {
+  color: #084298; /* darker on hover for visibility */
+  text-decoration: underline;
+}
 
 
 
