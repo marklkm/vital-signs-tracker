@@ -232,3 +232,16 @@ darkModeSwitch.addEventListener("change", function () {
 
 document.getElementById("time").value = new Date().toISOString().slice(0, 16);
 loadPatientsFromStorage();
+
+const largeTextSwitch = document.getElementById("largeTextSwitch");
+
+// Load preference from storage
+if (localStorage.getItem("largeTextMode") === "true") {
+  document.body.classList.add("large-text-mode");
+  largeTextSwitch.checked = true;
+}
+
+largeTextSwitch.addEventListener("change", function () {
+  document.body.classList.toggle("large-text-mode", this.checked);
+  localStorage.setItem("largeTextMode", this.checked);
+});

@@ -17,6 +17,32 @@
         border-radius: 0.5rem;
         margin-bottom: 2rem;
       }
+
+      /* Light mode (default) */
+.patient-info-box {
+  background-color: #e9ecef;
+  color: #212529;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Dark mode adjustment */
+.dark-mode .patient-info-box {
+  background-color: #1e1e1e; /* darker background */
+  color: #f1f1f1;           /* light text for contrast */
+  border: 1px solid #444;   /* subtle border for separation */
+}
+
+/* Ensure text inside remains readable */
+.dark-mode .patient-info-box strong {
+  color: #ffffff;
+}
+
+.dark-mode .patient-info-box p {
+  color: #f1f1f1;
+}
+
       .btn-burger {
         background: none;
         border: none;
@@ -85,5 +111,39 @@ footer a:focus {
   .dark-mode table.table td::before {
     color: #ddd;
   }
+}
+
+/* Large Text Accessibility Mode */
+.large-text-mode {
+  font-size: 1.25rem; /* increases base text size by ~25% */
+  line-height: 1.6;
+}
+
+.large-text-mode h1,
+.large-text-mode h2,
+.large-text-mode h3,
+.large-text-mode h4,
+.large-text-mode h5 {
+  font-size: 1.2em; /* scales headings slightly but keeps structure */
+}
+
+.large-text-mode label,
+.large-text-mode button,
+.large-text-mode input,
+.large-text-mode select,
+.large-text-mode table,
+.large-text-mode th,
+.large-text-mode td {
+  font-size: 1.1em;
+}
+
+/* Ensure buttons and form controls remain easy to use */
+.large-text-mode .btn {
+  padding: 0.75rem 1rem;
+}
+
+.large-text-mode #sidebar {
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
