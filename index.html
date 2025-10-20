@@ -120,15 +120,30 @@
         </div>
 
         <!-- Current Patient Info -->
-        <div id="patientInfoDisplay" class="patient-info-box d-none">
-          <h4>Current Patient</h4>
+        <!-- Patient Info Display -->
+        <div
+          id="patientInfoDisplay"
+          class="patient-info-box d-none text-center mx-auto d-flex flex-column justify-content-center align-items-center shadow-sm"
+          style="min-height: 60vh; max-width: 400px"
+        >
+          <h4 class="fw-bold mb-3">Current Patient</h4>
+
           <img
             id="patientPhoto"
-            src=""
+            src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
             alt="Patient photo"
-            class="img-thumbnail mb-3 d-none"
+            class="img-thumbnail mb-3 d-none mx-auto d-block"
+            style="
+              width: 120px;
+              height: 120px;
+              border-radius: 50%;
+              object-fit: cover;
+            "
           />
-          <p><strong>Name:</strong> <span id="displayPatientName"></span></p>
+
+          <p class="mb-1">
+            <strong>Name:</strong> <span id="displayPatientName"></span>
+          </p>
           <p><strong>DOB:</strong> <span id="displayPatientDOB"></span></p>
         </div>
       </div>
