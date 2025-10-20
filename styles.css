@@ -1,0 +1,11 @@
+.dark-mode footer {
+  background-color: #121212 !important;
+  color: #f1f1f1 !important;
+  border-color: #333;
+}
+.dark-mode footer a {
+  color: #9ecfff !important;
+}
+.dark-mode footer small {
+  color: #ccc !important;
+}
