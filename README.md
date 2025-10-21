@@ -39,6 +39,7 @@ A simple, accessible, and privacy-friendly web app for recording and managing pa
 - **Alt text** is included for all images and icons.
 - **Readable font sizes** and **dark mode** support are built in.
 - Ideal for **offline use** or privacy-sensitive healthcare environments.
+- Tested with WAVE **web accessibility tool** which is a suite of evaluation tools that helps make web content more accessible to individuals with disabilities.
 
 ---
 
