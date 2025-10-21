@@ -18,6 +18,16 @@
         margin-bottom: 2rem;
       }
 
+
+      .btn-accessible {
+  color: #212529 !important;
+  border-color: #212529 !important;
+  background-color: #f8f9fa !important;
+}
+.btn-accessible:hover {
+  background-color: #e9ecef !important;
+}
+
       /* Light mode (default) */
 .patient-info-box {
   background-color: #e9ecef;
