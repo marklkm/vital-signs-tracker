@@ -1,25 +1,24 @@
-      body {
-        transition: background-color 0.5s, color 0.5s;
-      }
-      .dark-mode {
-        background-color: #121212 !important;
-        color: #f1f1f1 !important;
-      }
-      .dark-mode .table {
-        color: #f1f1f1;
-      }
-      .form-section {
-        margin-top: 1rem;
-      }
-      .patient-info-box {
-        background-color: #e9ecef;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        margin-bottom: 2rem;
-      }
+body {
+  transition: background-color 0.5s, color 0.5s;
+}
+.dark-mode {
+  background-color: #121212 !important;
+  color: #f1f1f1 !important;
+}
+.dark-mode .table {
+  color: #f1f1f1;
+}
+.form-section {
+  margin-top: 1rem;
+}
+.patient-info-box {
+  background-color: #e9ecef;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
 
-
-      .btn-accessible {
+.btn-accessible {
   color: #212529 !important;
   border-color: #212529 !important;
   background-color: #f8f9fa !important;
@@ -28,7 +27,7 @@
   background-color: #e9ecef !important;
 }
 
-      /* Light mode (default) */
+/* Light mode (default) */
 .patient-info-box {
   background-color: #e9ecef;
   color: #212529;
@@ -53,15 +52,16 @@
   color: #f1f1f1;
 }
 
-      .btn-burger {
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-      }
-      #patientPhoto {
-        max-width: 150px;
-        border-radius: 0.5rem;
-      }
+.btn-burger {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+#patientPhoto {
+  max-width: 150px;
+  border-radius: 0.5rem;
+}
+
 footer a {
   color: #0a58ca; /* a darker accessible blue */
   font-weight: 500;
@@ -72,8 +72,6 @@ footer a:focus {
   color: #084298; /* darker on hover for visibility */
   text-decoration: underline;
 }
-
-
 
 .dark-mode footer {
   background-color: #121212 !important;
@@ -87,9 +85,7 @@ footer a:focus {
   color: #ccc !important;
 }
 
-
 /* Responsive adjustments */
-
 @media (max-width: 576px) {
   table.table thead {
     display: none;
@@ -114,10 +110,12 @@ footer a:focus {
     text-transform: capitalize;
     color: #495057;
   }
+
   .dark-mode table.table tbody tr {
     background-color: #1e1e1e;
     color: #f1f1f1;
   }
+
   .dark-mode table.table td::before {
     color: #ddd;
   }
@@ -157,3 +155,19 @@ footer a:focus {
   font-weight: 500;
 }
 
+/* ✅ Fix: improve dark-mode contrast for Recorded Vital Signs on mobile */
+@media (max-width: 576px) {
+  .dark-mode table.table tbody tr {
+    background-color: #fff !important; /* white rows for better contrast */
+    color: #000 !important; /* black text */
+  }
+
+  .dark-mode table.table td::before {
+    color: #000 !important; /* black labels */
+    font-weight: 600;
+  }
+
+  .dark-mode table.table td {
+    color: #000 !important;
+  }
+}
