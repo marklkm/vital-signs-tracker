@@ -4,36 +4,37 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Vital Signs Tracker</title>
+    <title>Vitals Tracker + Dementia Care</title>
 
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-
     <!-- Bootstrap Icons -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-
-    <!-- Custom Styles -->
+    <!-- App CSS -->
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
-    <h1 class="visually-hidden">Vital Signs Tracker</h1>
+    <a class="visually-hidden-focusable" href="#main-content"
+      >Skip to content</a
+    >
+    <h1 class="visually-hidden">Vitals Tracker + Dementia Care</h1>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-light bg-light px-3">
+    <nav class="navbar bg-light px-3 border-bottom sticky-top">
       <button
-        class="btn btn-accessible"
+        class="btn btn-outline-secondary"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#sidebar"
         aria-controls="sidebar"
-        aria-label="Open menu"
+        aria-label="Toggle menu"
       >
         ☰
       </button>
@@ -46,15 +47,21 @@
           height="32"
           class="me-2"
         />
-        <span>Vital Signs Tracker</span>
+        <span class="fw-semibold">Vitals Tracker + Dementia Care</span>
       </a>
     </nav>
 
-    <!-- Sidebar -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
+    <!-- Sidebar (Offcanvas) -->
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="sidebar"
+      aria-labelledby="sidebarLabel"
+    >
       <div class="offcanvas-header">
-        <h2 class="offcanvas-title h5">Menu</h2>
+        <h2 class="offcanvas-title h5" id="sidebarLabel">Menu</h2>
         <button
+          id="closeSidebar"
           type="button"
           class="btn-close"
           data-bs-dismiss="offcanvas"
@@ -68,32 +75,81 @@
           </li>
         </ul>
 
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="darkModeSwitch" />
-          <label class="form-check-label" for="darkModeSwitch">
-            Dark Mode
-          </label>
-        </div>
+        <div class="vstack gap-3">
+          <div class="form-check form-switch mb-0">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="darkModeSwitch"
+            />
+            <label class="form-check-label" for="darkModeSwitch"
+              >Dark Mode</label
+            >
+          </div>
 
-        <div class="form-check form-switch mt-3">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="largeTextSwitch"
-          />
-          <label class="form-check-label" for="largeTextSwitch">
-            Large Text Mode
-          </label>
+          <div class="form-check form-switch mb-0">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="largeTextSwitch"
+            />
+            <label class="form-check-label" for="largeTextSwitch"
+              >Large Text</label
+            >
+          </div>
+
+          <div class="form-check form-switch mt-3">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="dyslexicFontSwitch"
+            />
+            <label class="form-check-label" for="dyslexicFontSwitch">
+              Dyslexic-Friendly Font
+            </label>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Main Content -->
     <main class="container-fluid p-4" id="main-content">
+      <!-- App Introduction -->
+      <section class="app-intro mb-5 p-4 rounded shadow-sm bg-light">
+        <h2 class="text-primary fw-bold mb-3">
+          About Vitals Tracker + Dementia Care
+        </h2>
+        <p class="lead">
+          <strong>Vitals Tracker + Dementia Care</strong> is an accessible tool
+          designed to help caregivers, nurses, and family members easily record
+          and monitor vital signs and wellbeing for people living with dementia.
+        </p>
+        <p>
+          The app focuses on simplicity, calm visuals, and large clear buttons.
+          It supports
+          <strong>Dark Mode</strong>, <strong>Large Text</strong>, and a
+          <strong>Dyslexic-Friendly Font</strong> for easier reading and reduced
+          visual stress.
+        </p>
+        <p>
+          All information is stored locally on your device for privacy and
+          safety — no internet connection is required. You can record
+          <em>blood pressure, pulse, temperature, oxygen levels</em>, and more,
+          while also logging
+          <em>mood check-ins, reminders, caregiver notes,</em> and
+          <em>familiar faces</em> to support memory and comfort.
+        </p>
+        <p class="mb-0">
+          This application was created to make dementia care more
+          person-centered and accessible, ensuring a calm, respectful, and
+          supportive experience for both patients and caregivers.
+        </p>
+      </section>
+
       <!-- Add New Patient -->
       <section class="form-section mb-5">
         <h2>Add New Patient</h2>
-        <form id="patientForm" class="row g-3 mb-4">
+        <form id="patientForm" class="row g-3 mb-4" novalidate>
           <div class="col-md-4 col-12">
             <label for="patientName" class="form-label">Patient Name</label>
             <input type="text" id="patientName" class="form-control" required />
@@ -103,9 +159,9 @@
             <input type="date" id="dob" class="form-control" required />
           </div>
           <div class="col-md-4 col-12">
-            <label for="patientImage" class="form-label">
-              Patient Photo (optional)
-            </label>
+            <label for="patientImage" class="form-label"
+              >Patient Photo (optional)</label
+            >
             <input
               type="file"
               id="patientImage"
@@ -132,13 +188,11 @@
         <div
           id="patientInfoDisplay"
           class="patient-info-box d-none text-center mx-auto d-flex flex-column justify-content-center align-items-center shadow-sm"
-          style="min-height: 60vh; max-width: 400px"
+          style="min-height: 40vh; max-width: 420px"
         >
           <h3 class="fw-bold mb-3">Current Patient</h3>
-
           <img
             id="patientPhoto"
-            src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
             alt="Patient photo"
             class="img-thumbnail mb-3 d-none mx-auto d-block"
             style="
@@ -148,7 +202,6 @@
               object-fit: cover;
             "
           />
-
           <p class="mb-1">
             <strong>Name:</strong> <span id="displayPatientName"></span>
           </p>
@@ -206,11 +259,11 @@
       </section>
 
       <!-- Recorded Vitals Table -->
-      <section>
+      <section class="mb-5">
         <h2>Recorded Vital Signs</h2>
         <div class="table-responsive">
           <table class="table table-striped table-bordered align-middle">
-            <thead>
+            <thead class="table-light">
               <tr>
                 <th>Time</th>
                 <th>Systolic</th>
@@ -226,21 +279,199 @@
         </div>
       </section>
 
-      <!-- Export / Delete Buttons -->
+      <!-- Cognitive Check-in -->
+      <section class="form-section mb-5">
+        <h2>Cognitive Check-in</h2>
+        <form id="cognitiveForm" class="row g-3 mb-3">
+          <div class="col-md-3">
+            <label for="mood" class="form-label">Mood</label>
+            <select id="mood" class="form-select">
+              <option value="">—</option>
+              <option>Happy</option>
+              <option>Calm</option>
+              <option>Confused</option>
+              <option>Agitated</option>
+              <option>Sad</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label for="memory" class="form-label">Memory</label>
+            <select id="memory" class="form-select">
+              <option value="">—</option>
+              <option>Good</option>
+              <option>Okay</option>
+              <option>Poor</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="notes" class="form-label">Notes</label>
+            <input
+              id="notes"
+              class="form-control"
+              placeholder="Short observation…"
+            />
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary">Save Check-in</button>
+          </div>
+        </form>
+
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>Date</th>
+                <th>Mood</th>
+                <th>Memory</th>
+                <th>Notes</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="cognitiveTable"></tbody>
+          </table>
+        </div>
+        <button id="exportCognitiveCSV" class="btn btn-outline-dark mt-2">
+          Export Cognitive Logs CSV
+        </button>
+      </section>
+
+      <!-- Reminders -->
+      <section class="form-section mb-5">
+        <h2>Reminders</h2>
+        <div class="input-group mb-3">
+          <input
+            id="reminderText"
+            class="form-control"
+            placeholder="Add a reminder…"
+          />
+          <button id="addReminder" class="btn btn-outline-primary">Add</button>
+        </div>
+        <ul id="reminderList" class="list-group"></ul>
+      </section>
+
+      <!-- Familiar Faces -->
+      <section class="form-section mb-5">
+        <h2>Familiar Faces</h2>
+        <div class="row g-3 align-items-end mb-3">
+          <div class="col-md-4">
+            <label for="faceName" class="form-label">Name</label>
+            <input
+              id="faceName"
+              class="form-control"
+              placeholder="Person’s name"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="faceImage" class="form-label">Photo</label>
+            <input
+              type="file"
+              id="faceImage"
+              accept="image/*"
+              class="form-control"
+            />
+          </div>
+          <div class="col-md-4">
+            <button id="addFace" class="btn btn-outline-success w-100">
+              Add Face
+            </button>
+          </div>
+        </div>
+        <div id="facesGrid" class="d-flex flex-wrap gap-3"></div>
+      </section>
+
+      <!-- Caregiver Notes -->
+      <section class="form-section mb-5">
+        <h2>Caregiver Notes</h2>
+        <p class="mb-2">
+          <small class="text-muted caregiver-hint"
+            >Brief notes from caregivers or nurses.</small
+          >
+        </p>
+        <div class="input-group mb-3">
+          <textarea
+            id="caregiverNotes"
+            rows="2"
+            class="form-control"
+            placeholder="Enter note…"
+          ></textarea>
+          <button id="saveCaregiverNote" class="btn btn-outline-dark">
+            Save Note
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>Date</th>
+                <th>Note</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="caregiverTable"></tbody>
+          </table>
+        </div>
+        <button id="exportCaregiverCSV" class="btn btn-outline-dark mt-2">
+          Export Notes CSV
+        </button>
+      </section>
+
+      <!-- Relaxing Music -->
+      <section class="form-section mb-5">
+        <h2>Relaxing Music</h2>
+        <div class="row g-3 align-items-end mb-3">
+          <div class="col-md-8">
+            <label for="musicFile" class="form-label"
+              >Add MP3 / M4A / WAV</label
+            >
+            <input
+              type="file"
+              id="musicFile"
+              accept="audio/*"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div
+          id="musicList"
+          class="list-group mb-3"
+          aria-label="Music tracks list"
+        ></div>
+        <audio
+          id="musicPlayer"
+          controls
+          class="w-100"
+          aria-label="Music player"
+        ></audio>
+        <button id="deleteMusic" class="btn btn-outline-danger mt-2">
+          Delete Selected Track
+        </button>
+      </section>
+
+      <!-- Manage Data -->
       <section class="mt-5">
         <h2>Manage Data</h2>
-        <button id="exportCSV" class="btn btn-warning w-100 mb-3">
-          Export All Patients to CSV
-        </button>
-        <button id="exportCurrentPatient" class="btn btn-info w-100 mb-3">
-          Export Current Patient to CSV
-        </button>
-        <button id="deletePatient" class="btn btn-danger w-100 mb-3">
-          Delete Current Patient
-        </button>
-        <button id="backupData" class="btn btn-secondary w-100">
-          Download Backup (JSON)
-        </button>
+        <div class="row g-3">
+          <div class="col-md-3 col-12">
+            <button id="exportCSV" class="btn btn-warning w-100">
+              Export All Patients to CSV
+            </button>
+          </div>
+          <div class="col-md-3 col-12">
+            <button id="exportCurrentPatient" class="btn btn-dark w-100">
+              Export Current Patient to CSV
+            </button>
+          </div>
+          <div class="col-md-3 col-12">
+            <button id="deletePatient" class="btn btn-danger w-100">
+              Delete Current Patient
+            </button>
+          </div>
+          <div class="col-md-3 col-12">
+            <button id="backupData" class="btn btn-secondary w-100">
+              Download Backup (JSON)
+            </button>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -250,27 +481,20 @@
         <div class="row align-items-center">
           <div class="col-md-6 text-md-start text-center mb-2 mb-md-0">
             <p class="mb-0">
-              <strong>Vital Signs Tracker</strong> — an accessible health
-              monitoring app.<br />
-              <small>All data is stored locally for privacy.</small>
+              <strong>Vitals Tracker + Dementia Care</strong> — an accessible
+              health tool. <br /><small
+                >All data is stored locally for privacy.</small
+              >
             </p>
           </div>
 
           <div class="col-md-6 text-md-end text-center">
-            <a
-              href="https://github.com/marklkm/vital-signs-tracker"
-              class="text-decoration-none me-3"
-              aria-label="View project on GitHub"
+            <a href="#" class="text-decoration-none me-3"
+              ><i class="bi bi-github"></i> GitHub</a
             >
-              <i class="bi bi-github"></i> GitHub
-            </a>
-            <a
-              href="mailto:info@vital-signs-tracker.com"
-              class="text-decoration-none"
-              aria-label="Contact support via email"
+            <a href="mailto:info@example.com" class="text-decoration-none"
+              ><i class="bi bi-envelope"></i> Contact</a
             >
-              <i class="bi bi-envelope"></i> Contact
-            </a>
           </div>
         </div>
       </div>
@@ -279,18 +503,21 @@
         class="text-center py-2 border-top small"
         style="background-color: #f8f9fa"
       >
-        &copy; <span id="year"></span> Vital Signs Tracker. All rights reserved.
+        &copy; <span id="year"></span> Vitals Tracker + Dementia Care. All
+        rights reserved.
       </div>
     </footer>
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
-
-    <!-- Bootstrap Bundle -->
+    <!-- Bootstrap JS bundle (required for dropdown, offcanvas, etc.) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom JavaScript -->
+    <!-- Dexie (for IndexedDB) -->
+    <script src="https://unpkg.com/dexie@3.2.5/dist/dexie.min.js"></script>
+
+    <!-- Custom script -->
     <script src="scripts.js"></script>
   </body>
 </html>

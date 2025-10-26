@@ -1,23 +1,91 @@
+/* ====================================================
+   Vitals Tracker + Dementia Care - Accessible Styles
+   ==================================================== */
+
+/* Smooth transitions */
 body {
   transition: background-color 0.5s, color 0.5s;
 }
+
+/* ----------------------------------------------------
+   Dark Mode Base
+---------------------------------------------------- */
 .dark-mode {
   background-color: #121212 !important;
   color: #f1f1f1 !important;
 }
-.dark-mode .table {
-  color: #f1f1f1;
+
+.dark-mode footer {
+  background-color: #121212 !important;
+  color: #f1f1f1 !important;
+  border-color: #333;
 }
-.form-section {
-  margin-top: 1rem;
+
+.dark-mode footer a {
+  color: #9ecfff !important;
 }
+
+.dark-mode footer small {
+  color: #ccc !important;
+}
+
+/* Sidebar (Offcanvas) in Dark Mode */
+.dark-mode .offcanvas {
+  background-color: #1c1c1c !important;
+  color: #f1f1f1 !important;
+}
+
+.dark-mode .offcanvas .offcanvas-title,
+.dark-mode .offcanvas .form-check-label,
+.dark-mode .offcanvas .nav-link {
+  color: #f1f1f1 !important;
+}
+
+.dark-mode .offcanvas .btn-close {
+  filter: invert(1);
+}
+
+/* Table Headings and Labels */
+.table thead th {
+  color: #000;
+}
+
+.table thead {
+  background: #f8f9fa;
+}
+
+.dark-mode .table thead th,
+.dark-mode label,
+.dark-mode .form-label,
+.dark-mode .table td::before,
+.dark-mode .caregiver-hint {
+  color: #ffffff !important;
+}
+
+/* Patient Info Box */
 .patient-info-box {
   background-color: #e9ecef;
+  color: #212529;
   padding: 1rem;
   border-radius: 0.5rem;
   margin-bottom: 2rem;
 }
 
+.dark-mode .patient-info-box {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  border: 1px solid #444;
+}
+
+.dark-mode .patient-info-box strong {
+  color: #ffffff;
+}
+
+.dark-mode .patient-info-box p {
+  color: #f1f1f1;
+}
+
+/* Buttons */
 .btn-accessible {
   color: #212529 !important;
   border-color: #212529 !important;
@@ -27,69 +95,80 @@ body {
   background-color: #e9ecef !important;
 }
 
-/* Light mode (default) */
-.patient-info-box {
-  background-color: #e9ecef;
-  color: #212529;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  margin-bottom: 2rem;
+/* Improve button contrast in Dark Mode */
+.dark-mode .btn-outline-dark {
+  color: #ffffff !important;
+  border-color: #9ecfff !important;
+}
+.dark-mode .btn-outline-dark:hover {
+  background-color: #0a58ca !important;
+  color: #ffffff !important;
+  border-color: #0a58ca !important;
 }
 
-/* Dark mode adjustment */
-.dark-mode .patient-info-box {
-  background-color: #1e1e1e; /* darker background */
-  color: #f1f1f1;           /* light text for contrast */
-  border: 1px solid #444;   /* subtle border for separation */
+/* Date Picker Fix for Dark Mode */
+.dark-mode input[type="date"],
+.dark-mode input[type="datetime-local"] {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
+  border-color: #555 !important;
 }
 
-/* Ensure text inside remains readable */
-.dark-mode .patient-info-box strong {
-  color: #ffffff;
+.dark-mode input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
 
-.dark-mode .patient-info-box p {
-  color: #f1f1f1;
+/* Large Text Mode */
+.large-text-mode {
+  font-size: 1.3rem;
+  line-height: 1.7;
 }
 
-.btn-burger {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-}
-#patientPhoto {
-  max-width: 150px;
-  border-radius: 0.5rem;
+.large-text-mode h1,
+.large-text-mode h2,
+.large-text-mode h3,
+.large-text-mode h4,
+.large-text-mode h5 {
+  font-size: 1.25em;
 }
 
-footer a {
-  color: #0a58ca; /* a darker accessible blue */
+.large-text-mode label,
+.large-text-mode button,
+.large-text-mode input,
+.large-text-mode select,
+.large-text-mode table,
+.large-text-mode th,
+.large-text-mode td {
+  font-size: 1.15em;
+}
+
+.large-text-mode .btn {
+  padding: 0.8rem 1.1rem;
+}
+
+.large-text-mode #sidebar {
+  font-size: 1.15rem;
   font-weight: 500;
 }
 
-footer a:hover,
-footer a:focus {
-  color: #084298; /* darker on hover for visibility */
-  text-decoration: underline;
+/* Dyslexic-Friendly Font */
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("assets/fonts/OpenDyslexic-Regular.woff2") format("woff2"),
+       url("assets/fonts/OpenDyslexic-Regular.woff") format("woff");
+  font-display: swap;
 }
 
-.dark-mode footer {
-  background-color: #121212 !important;
-  color: #f1f1f1 !important;
-  border-color: #333;
-}
-.dark-mode footer a {
-  color: #9ecfff !important;
-}
-.dark-mode footer small {
-  color: #ccc !important;
+.dyslexic-font {
+  font-family: "OpenDyslexic", Arial, sans-serif !important;
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for small screens */
 @media (max-width: 576px) {
   table.table thead {
     display: none;
   }
+
   table.table tbody tr {
     display: block;
     margin-bottom: 1rem;
@@ -98,12 +177,14 @@ footer a:focus {
     padding: 0.5rem;
     background-color: #fff;
   }
+
   table.table td {
     display: flex;
     justify-content: space-between;
     padding: 0.4rem 0.8rem;
     border: none !important;
   }
+
   table.table td::before {
     content: attr(data-label);
     font-weight: 600;
@@ -121,53 +202,66 @@ footer a:focus {
   }
 }
 
-/* Large Text Accessibility Mode */
-.large-text-mode {
-  font-size: 1.25rem; /* increases base text size by ~25% */
-  line-height: 1.6;
+/* ====================================================
+   FIX: Table Visibility in Dark Mode (Final)
+==================================================== */
+.dark-mode table,
+.dark-mode .table {
+  background-color: #1c1c1c !important;
+  color: #ffffff !important;
 }
 
-.large-text-mode h1,
-.large-text-mode h2,
-.large-text-mode h3,
-.large-text-mode h4,
-.large-text-mode h5 {
-  font-size: 1.2em; /* scales headings slightly but keeps structure */
+.dark-mode table thead,
+.dark-mode .table thead {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
 }
 
-.large-text-mode label,
-.large-text-mode button,
-.large-text-mode input,
-.large-text-mode select,
-.large-text-mode table,
-.large-text-mode th,
-.large-text-mode td {
-  font-size: 1.1em;
+.dark-mode table thead th,
+.dark-mode .table thead th {
+  color: #ffffff !important;
+  background-color: #2a2a2a !important;
+  border-bottom: 1px solid #444 !important;
 }
 
-/* Ensure buttons and form controls remain easy to use */
-.large-text-mode .btn {
-  padding: 0.75rem 1rem;
+.dark-mode table tbody tr,
+.dark-mode .table tbody tr {
+  background-color: #1e1e1e !important;
+  color: #f1f1f1 !important;
+  border-color: #333 !important;
 }
 
-.large-text-mode #sidebar {
-  font-size: 1.1rem;
-  font-weight: 500;
+.dark-mode table td,
+.dark-mode .table td {
+  color: #f1f1f1 !important;
+  border-color: #333 !important;
 }
 
-/* ✅ Fix: improve dark-mode contrast for Recorded Vital Signs on mobile */
-@media (max-width: 576px) {
-  .dark-mode table.table tbody tr {
-    background-color: #fff !important; /* white rows for better contrast */
-    color: #000 !important; /* black text */
-  }
+.dark-mode label,
+.dark-mode .form-label,
+.dark-mode th {
+  color: #ffffff !important;
+}
 
-  .dark-mode table.table td::before {
-    color: #000 !important; /* black labels */
-    font-weight: 600;
-  }
 
-  .dark-mode table.table td {
-    color: #000 !important;
-  }
+/* App Intro Section Styling (Improved Contrast) */
+.app-intro {
+  background-color: #f8f9fa;          /* Light neutral background */
+  border-left: 6px solid #0a58ca;     /* Calm blue accent */
+  color: #212529;                     /* Strong dark text for readability */
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.dark-mode .app-intro {
+  background-color: #1e1e1e !important;  /* True dark background */
+  border-left: 6px solid #9ecfff !important;
+  color: #ffffff !important;              /* Pure white text for contrast */
+}
+
+.dark-mode .app-intro p,
+.dark-mode .app-intro h2,
+.dark-mode .app-intro strong,
+.dark-mode .app-intro em {
+  color: #ffffff !important;
 }
