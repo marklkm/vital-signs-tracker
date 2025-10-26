@@ -338,14 +338,25 @@
       <!-- Reminders -->
       <section class="form-section mb-5">
         <h2>Reminders</h2>
-        <div class="input-group mb-3">
-          <input
-            id="reminderText"
-            class="form-control"
-            placeholder="Add a reminder…"
-          />
-          <button id="addReminder" class="btn btn-outline-primary">Add</button>
+        <div class="mb-3">
+          <label for="reminderText" class="form-label">Add Reminder</label>
+          <div class="input-group">
+            <input
+              id="reminderText"
+              class="form-control"
+              type="text"
+              placeholder="e.g., Take medication at 9 AM"
+              aria-describedby="reminderHelp"
+            />
+            <button id="addReminder" class="btn btn-outline-primary">
+              Add
+            </button>
+          </div>
+          <div id="reminderHelp" class="form-text">
+            Type a reminder and click “Add” to include it in the list.
+          </div>
         </div>
+
         <ul id="reminderList" class="list-group"></ul>
       </section>
 
