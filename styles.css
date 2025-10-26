@@ -272,3 +272,20 @@ body {
 .dark-mode .app-intro em {
   color: #ffffff !important;
 }
+
+
+/* Accessible footer link colors */
+footer a {
+  color: #0a58ca !important; /* darker accessible blue (passes WCAG AA) */
+  font-weight: 500;
+}
+
+footer a:hover,
+footer a:focus {
+  color: #084298 !important; /* darker on hover for contrast */
+  text-decoration: underline;
+}
+
+.dark-mode footer a {
+  color: #9ecfff !important; /* lighter blue for contrast in dark mode */
+}
