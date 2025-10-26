@@ -86,14 +86,21 @@ body {
 }
 
 /* Buttons */
+/* Accessible toggle button for navbar */
 .btn-accessible {
-  color: #212529 !important;
-  border-color: #212529 !important;
-  background-color: #f8f9fa !important;
+  background-color: #e6f0ff !important;  /* soft light-blue background */
+  color: #003366 !important;             /* deep navy text for contrast */
+  border: 1px solid #003366 !important;
+  font-weight: 600;
 }
-.btn-accessible:hover {
-  background-color: #e9ecef !important;
+
+.btn-accessible:hover,
+.btn-accessible:focus {
+  background-color: #cce0ff !important;
+  color: #001f4d !important;
+  border-color: #001f4d !important;
 }
+
 
 /* Improve button contrast in Dark Mode */
 .dark-mode .btn-outline-dark {
