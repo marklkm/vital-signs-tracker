@@ -399,12 +399,22 @@
           >
         </p>
         <div class="input-group mb-3">
-          <textarea
-            id="caregiverNotes"
-            rows="2"
-            class="form-control"
-            placeholder="Enter note…"
-          ></textarea>
+          <div class="mb-3">
+            <label for="caregiverNotes" class="form-label"
+              >Caregiver Note</label
+            >
+            <textarea
+              id="caregiverNotes"
+              rows="2"
+              class="form-control"
+              placeholder="Enter a brief note or observation…"
+              aria-describedby="caregiverHelp"
+            ></textarea>
+            <div id="caregiverHelp" class="form-text">
+              Write a short note or observation about the patient’s wellbeing.
+            </div>
+          </div>
+
           <button id="saveCaregiverNote" class="btn btn-outline-dark">
             Save Note
           </button>
