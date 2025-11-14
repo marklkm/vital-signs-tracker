@@ -368,3 +368,38 @@ footer a:focus {
   font-size: 0.9rem;
   white-space: nowrap;
 }
+
+
+.navbar-brand span {
+  white-space: normal;
+}
+
+@media (max-width: 480px) {
+  .navbar-brand span {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar-brand span {
+    font-size: 0.8rem;
+  }
+}
+
+
+.brand-title {
+  white-space: normal;      /* allow wrapping */
+  line-height: 1.1;
+}
+
+@media (max-width: 480px) {
+  .brand-title {
+    font-size: 0.95rem;     /* slightly smaller on small phones */
+  }
+}
+
+@media (max-width: 360px) {
+  .brand-title {
+    font-size: 0.85rem;     /* extra small devices */
+  }
+}
