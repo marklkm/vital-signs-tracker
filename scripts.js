@@ -215,21 +215,41 @@ function renderCognitive() {
   table.innerHTML = "";
   if (!currentPatientID || !patients[currentPatientID]) return;
 
-  (patients[currentPatientID].cognitive || []).forEach((c) => {
+  const entries = patients[currentPatientID].cognitive || [];
+
+  entries.forEach((c, index) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td data-label="Date">${c.date || ""}</td>
       <td data-label="Mood">${c.mood || ""}</td>
       <td data-label="Memory">${c.memory || ""}</td>
       <td data-label="Notes">${c.notes || ""}</td>
+      <td data-label="Action">
+        <button class="btn btn-outline-danger btn-sm" data-index="${index}">
+          Delete
+        </button>
+      </td>
     `;
     table.appendChild(tr);
+  });
+
+  // Add delete button event listeners
+  table.querySelectorAll("button[data-index]").forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      const idx = parseInt(e.target.dataset.index, 10);
+      if (isNaN(idx)) return;
+
+      patients[currentPatientID].cognitive.splice(idx, 1);
+      await save();
+      renderCognitive();
+    });
   });
 }
 
 function bindCognitive() {
   const form = safeGet("cognitiveForm");
   const exportBtn = safeGet("exportCognitiveCSV");
+
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -237,6 +257,7 @@ function bindCognitive() {
         alert("Please select a patient first.");
         return;
       }
+
       const mood = safeGet("mood")?.value || "";
       const memory = safeGet("memory")?.value || "";
       const notes = safeGet("notes")?.value || "";

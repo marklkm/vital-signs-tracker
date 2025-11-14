@@ -86,10 +86,9 @@ body {
 }
 
 /* Buttons */
-/* Accessible toggle button for navbar */
 .btn-accessible {
-  background-color: #e6f0ff !important;  /* soft light-blue background */
-  color: #003366 !important;             /* deep navy text for contrast */
+  background-color: #e6f0ff !important;
+  color: #003366 !important;
   border: 1px solid #003366 !important;
   font-weight: 600;
 }
@@ -101,16 +100,48 @@ body {
   border-color: #001f4d !important;
 }
 
-
 /* Improve button contrast in Dark Mode */
 .dark-mode .btn-outline-dark {
   color: #ffffff !important;
   border-color: #9ecfff !important;
 }
+
 .dark-mode .btn-outline-dark:hover {
   background-color: #0a58ca !important;
   color: #ffffff !important;
   border-color: #0a58ca !important;
+}
+
+/* ----------------------------------------------------
+   FIX: Button contrast in Dark Mode (including Save Vital Signs)
+---------------------------------------------------- */
+.dark-mode .btn-primary {
+  background-color: #0d6efd !important;
+  color: #ffffff !important;
+  border-color: #0a58ca !important;
+  font-weight: 600;
+}
+
+.dark-mode .btn-primary:hover,
+.dark-mode .btn-primary:focus {
+  background-color: #0b5ed7 !important;
+  border-color: #0a58ca !important;
+  color: #fff !important;
+}
+
+/* Outline buttons in Dark Mode */
+.dark-mode .btn-outline-primary,
+.dark-mode .btn-outline-warning,
+.dark-mode .btn-outline-danger {
+  color: #f1f1f1 !important;
+  border-color: #f1f1f1 !important;
+}
+
+.dark-mode .btn-outline-primary:hover,
+.dark-mode .btn-outline-warning:hover,
+.dark-mode .btn-outline-danger:hover {
+  background-color: #f1f1f1 !important;
+  color: #121212 !important;
 }
 
 /* Date Picker Fix for Dark Mode */
@@ -234,36 +265,64 @@ body {
 .dark-mode table tbody tr,
 .dark-mode .table tbody tr {
   background-color: #1e1e1e !important;
-  color: #f1f1f1 !important;
+  color: #ffffff !important;
   border-color: #333 !important;
 }
 
 .dark-mode table td,
 .dark-mode .table td {
-  color: #f1f1f1 !important;
+  color: #000000 !important;
   border-color: #333 !important;
 }
 
-.dark-mode label,
-.dark-mode .form-label,
-.dark-mode th {
+/* Highlight table labels for Recorded Vital Signs */
+.dark-mode th,
+.dark-mode td[data-label] {
+  color: #000000 !important;
+  font-weight: 500;
+}
+
+/* Make table rows slightly lighter for readability */
+.dark-mode .table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #242424 !important;
+}
+
+/* Cognitive Check-in delete button styling */
+#cognitiveTable .btn-lg {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.6rem;
+  white-space: nowrap;
+}
+
+.dark-mode #cognitiveTable .btn-lg {
+  background-color: #dc3545 !important; /* Bootstrap red */
+  color: #fff !important;
+  border: none !important;
+}
+
+.dark-mode #cognitiveTable .btn-sm:hover {
+  background-color: #b02a37 !important;
+}
+
+/* Caregiver Notes table text */
+.dark-mode #caregiverTable td,
+.dark-mode #caregiverTable th {
   color: #ffffff !important;
 }
 
-
-/* App Intro Section Styling (Improved Contrast) */
+/* App Intro Section Styling */
 .app-intro {
-  background-color: #f8f9fa;          /* Light neutral background */
-  border-left: 6px solid #0a58ca;     /* Calm blue accent */
-  color: #212529;                     /* Strong dark text for readability */
+  background-color: #f8f9fa;
+  border-left: 6px solid #0a58ca;
+  color: #212529;
   padding: 1.5rem;
   border-radius: 0.5rem;
 }
 
 .dark-mode .app-intro {
-  background-color: #1e1e1e !important;  /* True dark background */
+  background-color: #1e1e1e !important;
   border-left: 6px solid #9ecfff !important;
-  color: #ffffff !important;              /* Pure white text for contrast */
+  color: #ffffff !important;
 }
 
 .dark-mode .app-intro p,
@@ -273,19 +332,39 @@ body {
   color: #ffffff !important;
 }
 
-
-/* Accessible footer link colors */
+/* Footer links */
 footer a {
-  color: #0a58ca !important; /* darker accessible blue (passes WCAG AA) */
+  color: #0a58ca !important;
   font-weight: 500;
 }
 
 footer a:hover,
 footer a:focus {
-  color: #084298 !important; /* darker on hover for contrast */
+  color: #084298 !important;
   text-decoration: underline;
 }
 
 .dark-mode footer a {
-  color: #9ecfff !important; /* lighter blue for contrast in dark mode */
+  color: #9ecfff !important;
+}
+
+/* Fix Caregiver Notes Save button height alignment */
+#saveCaregiverNote {
+  height: auto;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  #saveCaregiverNote {
+    height: 100%;
+  }
+}
+
+#saveCaregiverNote {
+  height: auto;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
